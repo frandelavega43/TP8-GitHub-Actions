@@ -1,34 +1,25 @@
 name: CI Workflow
 
-# Este workflow se ejecuta cuando hacemos push a la rama `main`
 on:
   push:
     branches:
-      - main  # O la rama que desees
+      - master  # Configurado para activarse en la rama 'master'
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Usa una imagen de Ubuntu para ejecutar el trabajo
+    runs-on: ubuntu-latest
 
     steps:
-      # Paso 1: Checkout el código del repositorio
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Paso 2: Configurar .NET (para proyectos C#)
-      - name: Set up .NET
-        uses: actions/setup-dotnet@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          dotnet-version: '6.0'  # O la versión de .NET que estés utilizando
+          node-version: '16'  # Ajusta según la versión de Node.js que uses
 
-      # Paso 3: Restaurar dependencias de .NET
-      - name: Restore dependencies
-        run: dotnet restore
+      - name: Install dependencies
+        run: npm install
 
-      # Paso 4: Construir el proyecto
-      - name: Build the project
-        run: dotnet build
-
-      # Paso 5: Ejecutar el proyecto (para "Hello World")
-      - name: Run the project
-        run: dotnet run
+      - name: Run tests (o ejecutar tu script)
+        run: node hello-world.js  # Asegúrate de que este script exista
