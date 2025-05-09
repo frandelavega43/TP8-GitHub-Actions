@@ -13,13 +13,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          node-version: '16'  
+          python-version: '3.8' 
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests (o ejecutar tu script)
-        run: node holamundo.cs  
+      - name: Run Hello World script
+        run: python hello-world.py  
